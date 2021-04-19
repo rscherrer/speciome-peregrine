@@ -27,7 +27,7 @@ if [ "$1" != "" ]; then
 	# Produce an executable (from here cannot be tested locally)
 
 	module load Qt5
-	qmake ./speciome/speciome.pro # assuming we are in the cluster folder
+	qmake ./speciome/speciome.pro
 	make --silent release
 
 	# Move the executable to the target folder
@@ -54,8 +54,8 @@ if [ "$1" != "" ]; then
 
 	cp protocol.txt $1
 	cp parameters.txt $1
-	cp run_simulations.sh $1
-	cp rerun_simulations.sh $1
+	cp runSimulations.sh $1
+	cp rerunSimulations.sh $1
 
 	# Copy the python scripts to the target folder
 
