@@ -27,7 +27,7 @@ if [ "$1" != "" ]; then
 	# Produce an executable (from here cannot be tested locally)
 
 	module load Qt5
-	qmake ../speciome.pro # assuming we are in the cluster folder
+	qmake ./speciome/speciome.pro # assuming we are in the cluster folder
 	make --silent release
 
 	# Move the executable to the target folder
