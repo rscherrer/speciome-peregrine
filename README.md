@@ -60,6 +60,16 @@ A protocol file looks like this:
 N=5
 ```
 
-Lines starting with `#SBATCH` will be added to the header of all the _job files_ submitted. They are options to give to SLURM (the queuing system, see the documentation of the Peregrine cluster). Lines starting with a dash and a parameter name (e.g. `-mutation`) will be interpreted as values of that parameter to explore, where the different values are separated by spaces. For multiple-valued parameters use underscores to group the values within a given parameter set (e.g. `-nvertices 10_10_10 20_20_20 30_30_30`). The script `runSimulations.sh` will make use of the Python scripts to run simulations for all combinations of the parameter values provided. The last element, `N`, indicates the number of replicate simulations per parameter set (the only thing that changes then is the random seed). 
+Lines starting with `#SBATCH` will be added to the header of all the _job files_ submitted. They are options to give to SLURM (the queuing system, see the documentation of the Peregrine cluster). Lines starting with a dash and a parameter name (e.g. `-mutation`) will be interpreted as values of that parameter to explore, where the different values are separated by spaces. For multiple-valued parameters use underscores to group the values within a given parameter set (e.g. `-nvertices 10_10_10 20_20_20 30_30_30`). The script `runSimulations.sh` will make use of the Python scripts to run simulations for all combinations of the parameter values provided. The last element, `N`, indicates the number of replicate simulations per parameter set (the only thing that changes then is the random seed).
 
-Say what parameter (see the speciome documentation) and protocol file are. Go into the target folder and run the simulations by running the runsimulation script from within the folder. It will use the python scripts to create job files to submit to the cluster according to the plan specified in the protocol, and using the executable present in the folder to run each simulation.
+The parameter values provided in the protocol file will be used to overwrite the default values in the _parameter file_ already present in the target folder. This file will be passed to the `speciome` executable upon execution. See the `speciome` documentation for details about the parameter file. Parameters that are not mentioned in the protocol file will not be overwritten.
+
+### Launch the simulations
+
+Run the `runSimulations.sh` script with its corresponding protocol file (e.g. `./runSimulations.sh protocol.txt`) from within the target folder. This should create a _simulation folder_ for each of the required simulations and launch each simulation by submitting a job file to SLURM from within each of these folders, using the `speciome` executable in the target folder.
+
+To monitor the advancement of your jobs, use the classic `sequeue -u $USER`. To cancel all your jobs, use `scancel -u $USER`.
+
+### Re-run simulations
+
+Run the `rerunSimulations.sh` script from within the target folder to re-run some simulations. This script should be followed by the name of a _rerun file_, a text file containing a list of names of the folders whose simulations must re-run.
