@@ -27,7 +27,8 @@ if [ "$1" != "" ]; then
 	# Produce an executable (from here cannot be tested locally)
 
 	module load Qt5
-	qmake ./speciome/speciome.pro
+	cd speciome
+	qmake ./speciome.pro
 	make --silent release
 
 	# Move the executable to the target folder
@@ -49,6 +50,8 @@ if [ "$1" != "" ]; then
 	mv Makefile.Release build
 	mv debug build
 	mv release build
+
+	cd ..
 
 	# Copy the protocol and the running script to the target folder
 
