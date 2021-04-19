@@ -31,9 +31,9 @@ if [ "$1" != "" ]; then
 	qmake ./speciome.pro
 	make --silent release
 
-	# Move the executable upstairs
+	# Move the executable to the target folder
 
-	mv speciome ..
+	mv speciome ../$1
 
 	# Move all intermediate files generated during the build to a build folder
 
@@ -54,10 +54,6 @@ if [ "$1" != "" ]; then
 	# Go back upstairs
 
 	cd ..
-
-	# Move the executable to the target folder
-
-	mv speciome $1
 
 	# Copy the protocol and the running script to the target folder
 
