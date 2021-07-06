@@ -20,41 +20,40 @@ def set_parameters(dir, args):
 
 	idpars = [i for i, str in enumerate(args) if re.match(r'\-', str)]
 
-	if len(idpars) == 0:
-		raise Exception("Please provide parameter names preceded by dashes e.g. -mutation")
+	if len(idpars) > 0:
 
-	# Read parameter file
-	with open(dir + "/parameters.txt", "rt") as f:
-		data = f.read()	
+		# Read parameter file
+		with open(dir + "/parameters.txt", "rt") as f:
+			data = f.read()	
 
-	# For each parameter
-	for i in range(len(idpars)):
+		# For each parameter
+		for i in range(len(idpars)):
 
-		# Define parameter name and value(s)
-		idpar = idpars[i] # parameter index in the list of arguments
-		parname = re.sub(r'\-', '', args[idpar]) # parameter name
-		idnext = nargs
-		if i != len(idpars) - 1: idnext = idpars[i + 1] 
-		nvalues = idnext - idpar - 1
-		if nvalues == 0:
-			raise Exception("No value supplied for parameter " + parname)
-		start = idpar + 1
-		stop = idpar + nvalues + 1
-		values = args[start:stop] # parameter values
-		sep = ' '
-		values = sep.join(values)
+			# Define parameter name and value(s)
+			idpar = idpars[i] # parameter index in the list of arguments
+			parname = re.sub(r'\-', '', args[idpar]) # parameter name
+			idnext = nargs
+			if i != len(idpars) - 1: idnext = idpars[i + 1] 
+			nvalues = idnext - idpar - 1
+			if nvalues == 0:
+				raise Exception("No value supplied for parameter " + parname)
+			start = idpar + 1
+			stop = idpar + nvalues + 1
+			values = args[start:stop] # parameter values
+			sep = ' '
+			values = sep.join(values)
 
-		# Search and replace
-		pattern = parname + ".*\n"
-		replacement = parname + sep + values + '\n'
-		if re.search(pattern, data):		
-			data = re.sub(pattern, replacement, data)
-		else:
-			data = data + replacement # or add
+			# Search and replace
+			pattern = parname + ".*\n"
+			replacement = parname + sep + values + '\n'
+			if re.search(pattern, data):		
+				data = re.sub(pattern, replacement, data)
+			else:
+				data = data + replacement # or add
 
-	# Overwrite the parameter file
-	with open(dir + "/parameters.txt", "wt") as f:
-		f.write(data)
+		# Overwrite the parameter file
+		with open(dir + "/parameters.txt", "wt") as f:
+			f.write(data)
 
 # Create folders with their corresponding parameter files for multiple combinations of parameters
 def combine_parameters(dir, args, nreplicates):
