@@ -99,7 +99,7 @@ def combine_parameters(dir, args, nreplicates):
 	for entry in fullentries:
 
 		# Make a folder for each replicate
-		dirtemplate = dir + "/sim_" + re.sub(" ", "_", re.sub("-", "", entry))
+		dirtemplate = dir + "/sim-" + re.sub(" ", "-", re.sub("-", "", entry))
 
 		for r in range(nreplicates):
 
