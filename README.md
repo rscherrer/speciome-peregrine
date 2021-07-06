@@ -39,7 +39,7 @@ Now clone the `speciome` repository by running the `cloneSpeciome.sh` script. Th
 
 ### Build the program
 
-Build an executable for `speciome` by running the `buildTarget.sh` script followed by the name of the _target folder_ where the executable should be moved. The idea is that the target folder is where all the simulations will be stored. Note that you can also compile the executable from source yourself using your favorite compiler. Try to run `buildTarget.sh` from within `speciome-peregrie`, as it assumes that the `speciome` folder is directly accessible from the working directory. This script will move the compiled executable, as well as other relevant files, into the target folder.
+Build an executable for `speciome` by running the `buildTarget.sh` script followed by the name of the _target folder_ where the executable should be moved. The idea is that the target folder is where all the simulations will be stored. Note that you can also compile the executable from source yourself using your favorite compiler. Try to run `buildTarget.sh` from within `speciome-peregrine`, as it assumes that the `speciome` folder is directly accessible from the working directory. This script will move the compiled executable, as well as other relevant files, into the target folder.
 
 ### Prepare a protocol
 
