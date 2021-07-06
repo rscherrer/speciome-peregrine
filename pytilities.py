@@ -103,7 +103,7 @@ def combine_parameters(dir, args, nreplicates):
 
 		for r in range(nreplicates):
 
-			dirname = dirtemplate + "_r" + str(r + 1)
+			dirname = dirtemplate + "-r" + str(r + 1)
 			if not os.path.exists(dirname): os.mkdir(dirname)	
 
 			# Make a parameter file
