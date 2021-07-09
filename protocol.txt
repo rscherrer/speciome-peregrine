@@ -4,7 +4,8 @@
 #SBATCH --mem=32Gb
 #SBATCH --partition=gelifes
 
--mutation 0.001 0.01
+#-mutation 0.001 0.01
 -ecosel 0.1 0.2
+-scaleD 1_1_1 2_2_2
 
-N=5
+N=1
